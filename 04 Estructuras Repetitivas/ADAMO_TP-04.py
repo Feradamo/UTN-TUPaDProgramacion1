@@ -122,3 +122,48 @@ while flag:
 # Devuelvo resultado
 print("FELICITACIONES!!!")
 print("El número de intentos es igual a: ", intentos)
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 6
+
+# Desarrolla un programa que imprima en pantalla todos los números pares comprendidos
+# entre 0 y 100, en orden decreciente.
+
+# Set de variables
+inico = 100
+fin = 0
+# Pinto los numeros entre inicio y fin -1
+for numero in range(inico, fin - 1, -1):
+    if numero % 2 == 0:
+        print(numero)
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 7
+
+# Crea un programa que calcule la suma de todos los números comprendidos entre 0 y un
+# número entero positivo indicado por el usuario
+
+while True:
+    # Solicito número al usuario
+    print("Ingrese un número entero mayor a 0: ")
+    numero_entero = int(input())
+    # Si es correcto salgo de bucle
+    if numero_entero > 0:
+        break
+acumulador = 0 # Acumulador de suma
+# Sumo números dentro del rango
+for numero in range(0, numero_entero + 1):
+    acumulador += numero
+# Devuelvo resultado
+print("El número acumulado es igual a: ", acumulador)
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 8
+
+# Escribe un programa que permita al usuario ingresar 100 números enteros. Luego, el
+# programa debe indicar cuántos de estos números son pares, cuántos son impares, cuántos son
+# negativos y cuántos son positivos. (Nota: para probar el programa puedes usar una cantidad
+# menor, pero debe estar preparado para procesar 100 números con un solo cambio).
