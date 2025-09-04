@@ -114,7 +114,7 @@ while flag:
         print("El número ingresado esta fuera de rango")
     # Si es diferente al numeros_aleatorios
     elif numeros_aleatorios != numero_entero:
-        print("\n Haz fallado intentalo nuevamente \n")
+        print("\n Has fallado intentalo nuevamente \n")
         intentos += 1 # Sumo intento
     else:
         # Si el resultado es correcto salgo del bucle
@@ -167,3 +167,76 @@ print("El número acumulado es igual a: ", acumulador)
 # programa debe indicar cuántos de estos números son pares, cuántos son impares, cuántos son
 # negativos y cuántos son positivos. (Nota: para probar el programa puedes usar una cantidad
 # menor, pero debe estar preparado para procesar 100 números con un solo cambio).
+
+# Counters
+numeros_pares = 0
+numeros_impares = 0
+numeros_positivos = 0
+numeros_negativos = 0
+limite = 100
+for x in range(limite):
+    # Solicito número al usuario
+    print("Ingrese un número entero: ")
+    numero_entero = int(input())
+    # Evaluacion de positivos y negativos
+    if numero_entero > 0:
+        numeros_positivos += 1
+    elif numero_entero < 0:
+        numeros_negativos += 1
+    # Evaluacion de pares e impares
+    if numero_entero % 2 == 0:
+        numeros_pares += 1
+    else:
+        numeros_impares += 1
+# Devuelvo resultado
+print(f"Has ingresado {numeros_pares} números pares")
+print(f"Has ingresado {numeros_impares} números impares")
+print(f"Has ingresado {numeros_positivos} números positivos")
+print(f"Has ingresado {numeros_negativos} números negativos")
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 9
+
+# Elabora un programa que permita al usuario ingresar 100 números enteros y luego calcule la
+# media de esos valores.
+
+acumulador = 0
+media = 0
+limite = 100
+# Acumulador de sumas
+for x in range(1, limite + 1):
+    print("Ingrese un número entero: ")
+    numero_entero = int(input())
+    acumulador += numero_entero 
+# Calculo media y devuelvo el resultado
+media = acumulador / limite
+print("El número acumulado es igual a: ", media)
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 10
+
+# Escribe un programa que invierta el orden de los dígitos de un número ingresado por el
+# usuario. Ejemplo: si el usuario ingresa 547, el programa debe mostrar 745.
+
+# Solicitamos al usuario un número
+print("Ingrese un número: ")
+numero_entero = int(input())
+# Variables
+numero_unidad  = 0  # Almaceno el último dígito
+numero_invertido = 0 # Formo nuevo número
+# Bucle
+while True:
+    # Obtener el último dígito
+    numero_unidad = numero_entero % 10 
+    # Construir el número invertido
+    numero_invertido = (numero_invertido * 10) + numero_unidad
+    # Remueve el último dígito
+    numero_entero = numero_entero // 10
+    # Si ya no quedan dígitos, salimos del bucle
+    if numero_entero == 0:
+        break
+# Mostrar el resultado final
+print("El número acumulado es igual a: ", numero_invertido)
+
