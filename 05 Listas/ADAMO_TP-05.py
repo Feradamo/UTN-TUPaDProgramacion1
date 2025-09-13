@@ -159,3 +159,276 @@ else:
 print(array_de_estudiantes)
 
 # -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 6
+
+# Dada una lista con 7 números, rotar todos los elementos una posición hacia la derecha (el
+# último pasa a ser el primero).
+
+# SOLUCION 1
+lista = [2,3,4,5,6,7,8]
+largo_de_lista = len(lista)
+elemento_a_copiar = 0
+# Almaceno ultima posicion 
+ultimo_elemento = lista[largo_de_lista - 1]
+# Actualizo posiciones en orden invertido
+for indice in range(largo_de_lista, 0, -1):
+    # Evito la posicion que no existe
+    if indice == largo_de_lista:
+        continue
+    # Tomo la posicion anterior y actualizo la actual
+    elemento_a_copiar = lista[indice - 1]
+    lista[indice] = elemento_a_copiar
+# Actualizo el primer elemento
+lista[0] = ultimo_elemento
+# Imprimo lista
+print(lista)
+
+# SOLUCION 2
+# pop(0) quita y devuelve el ultimo, si recibe arg quite el indice solicitado
+# insert(0, x) agrega al inicio
+# appen() agrega al final
+lista = [2,3,4,5,6,7,8]
+ultimo_elemento = lista.pop()
+lista.insert(0, ultimo_elemento)
+print(lista)
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 7
+
+# Crear una matriz (lista anidada) de 7x2 con las temperaturas mínimas y máximas de una
+# semana.
+# • Calcular el promedio de las mínimas y el de las máximas.
+# • Mostrar en qué día se registró la mayor amplitud térmica.
+
+# Temperaturas
+temperaturas = [
+    [19, 18, 20, 19, 19, 22, 20], # máximas
+    [12, 13, 14, 14, 13, 16, 17]  # mínimas
+]
+# Promedios
+promedioMinima = 0
+promedioMaxima = 0
+# Amplitud térmica
+mayorAmplitudTermica = 0
+# Recorre matriz de temperaturas
+for i in range(len(temperaturas)):
+    # Variable de fila
+    fila = temperaturas[i]
+    # Recorre array de temperaturas maximas y minimas
+    for j in range(len(fila)):
+        # Segunda fila para temperaturas maximas
+        if i == 1:
+            promedioMaxima += fila[j]
+        # Sino fila para temperaturas minimas
+        else:
+            promedioMinima += fila[j]
+
+# Recorre array de temperaturas
+for i in range(len(temperaturas[0])):
+    # Variables de temperaturas
+    temperaturasMaximas = temperaturas[0][i]
+    temperaturasMinimas = temperaturas[1][i]
+    # Calculo de amplitud térmica
+    amplitudTermica = temperaturasMaximas - temperaturasMinimas
+
+    if amplitudTermica > mayorAmplitudTermica:
+        mayorAmplitudTermica = amplitudTermica
+
+# Calulo de promedios
+promedioMinima = promedioMinima / len(fila)
+promedioMaxima = promedioMaxima / len(fila)
+
+# Muestra valores por pantalla
+print(f"El promedio de mínima es igual a : {round(promedioMinima, 1)}°")
+print(f"El promedio de máxima es igual a : {round(promedioMaxima, 1)}°")
+print(f"La mayor amplitud térmica fue de: {mayorAmplitudTermica}°")
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 8
+
+# Crear una matriz con las notas de 5 estudiantes en 3 materias.
+# • Mostrar el promedio de cada estudiante.
+# • Mostrar el promedio de cada materia.
+
+notas = [
+            [2,7,4,6,9], # Matemática
+            [6,8,9,7,8], # Programación 
+            [7,3,6,7,9], # Organizacion Empresarial
+        ]
+
+# Calcula el promedio de cada materia
+for i in range(len(notas)):
+    fila = notas[i]
+    # Reinicia la variable que acumula notas
+    acumuladorDeNotas = 0
+    # Recorre cada columna
+    for j in range(len(fila)):
+        columna = fila[j]
+        # Suma la nota al acumulador
+        acumuladorDeNotas += columna
+    # Calcula el promedio de la materia
+    promedio = acumuladorDeNotas / len(fila)
+    # Muestra el promedio de la materia
+    print(f"El promedio de la materia {i + 1} es igual a: {promedio}")
+
+# Calcula el promedio de cada alumno - asumo que son 5 notas
+for i in range(len(notas[0])): 
+    # Reinicia la variable que acumula notas
+    acumuladorDeNotas = 0
+    # Recorre cada fila
+    for j in range(len(notas)):
+        # i es la nota y j es la materia
+        columna = notas[j][i]
+        # Suma la nota al acumulador
+        acumuladorDeNotas += columna
+    # Calcula el promedio del alumno
+    promedio = acumuladorDeNotas / len(notas)
+    # Muestra el promedio del alumno
+    print(f"El promedio del alumno {i + 1} es igual a: {round(promedio, 1)}")
+
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 9
+
+# Representar un tablero de Ta-Te-Ti como una lista de listas (3x3).
+# • Inicializarlo con guiones "-" representando casillas vacías.
+# • Permitir que dos jugadores ingresen posiciones (fila, columna) para colocar "X" o "O".
+# • Mostrar el tablero después de cada jugada.
+
+tablero = [
+        ["-","-","-"], 
+        ["-","-","-"], 
+        ["-","-","-"], 
+    ]
+
+print("\n---------------------------------------------\n")
+print("Antes de comenzar a jugar recuerde ")
+print("que las posiciones en el eje 'x' o 'y'")
+print("no pueden ser MENORES a 1 ni MAYORES a 3")
+print("\n---------------------------------------------\n")
+
+juegoEnProceso = True
+jugadorActual = 0
+cantidadDeJugadas = 9
+jugadas = []
+
+while juegoEnProceso:
+    # Evalua si la cantidad de jugadas es igual a la cantidad de posiciones
+    if len(jugadas) == cantidadDeJugadas - 1:
+        juegoEnProceso = False
+        print("El juego ha terminado")
+    # Variable que almacena el estado de la jugada
+    jugadaValida = False
+    # Variable que almacena el valor de la ficha
+    ficha = ""
+    # Evalua que jugador realiza la accion
+    if jugadorActual == 0 or jugadorActual == 1:
+        print("---------------------------------------------")
+        print("Turno del jugador X\n")
+        ficha = "X"
+        jugadorActual = 1
+    else: 
+        print("\n---------------------------------------------")
+        print("Turno del jugador O\n")
+        ficha = "O"
+        jugadorActual = 2
+    # Solicita coordenandas al usuario
+    while not jugadaValida:
+        print("\nIngrese coordenadas en eje 'x'")
+        posicionX = int(input()) - 1
+        print("\n---------------------------------------------")
+        print("\nIngrese coordenadas en eje 'y'")
+        posicionY = int(input()) - 1
+        print("\n---------------------------------------------")
+        # Valida si las coordenandas se encuentran dentro del rango
+        if posicionX >= 0 and posicionX <= 2 and posicionY >= 0 and posicionY <= 2:
+            # Valida si la posicion se encuentra ocupada
+            if tablero[posicionX][posicionY] != "O" and tablero[posicionX][posicionY] != "X":
+                jugadaValida = True
+            else:
+                print("La posicion ya se encuentra ocupada!")        
+        else:
+            print("Has ingresado un valor de coordenada incorrecto!")
+    # Si la jugada es válida updateo el juego
+    if jugadaValida:
+        # Actualiza el valor de ficha en la matriz
+        tablero[posicionX][posicionY] = ficha
+        # Actualiza el registro de jugadas
+        jugadas.append(ficha)
+        # Pinta el tablero
+        for x in range(len(tablero)):
+            acumulador = ""
+            for j in range(len(tablero[x])):
+                acumulador += "|" + tablero[x][j] + "|"
+            print(acumulador)
+        # Cambia al jugador opuesto
+        jugadorActual = 2 if jugadorActual == 1 else 1
+
+
+# -----------------------------------------------------------------------------------------------
+
+# EJERCICIO 10
+
+# Una tienda registra las ventas de 4 productos durante 7 días, en una matriz de 4x7.
+# • Mostrar el total vendido por cada producto.
+# • Mostrar el día con mayores ventas totales.
+# • Indicar cuál fue el producto más vendido en la semana.
+
+# Una tienda registra las ventas de 4 productos durante 7 días, en una matriz de 4x7.
+# • Mostrar el total vendido por cada producto.
+# • Mostrar el día con mayores ventas totales.
+# • Indicar cuál fue el producto más vendido en la semana.
+# Matriz de ventas
+ventas = [
+    [12, 15, 20, 18, 25, 30, 22],  # Producto 1
+    [8,  10, 12, 9,  14, 11, 13],  # Producto 2
+    [5,  7,  6,  8,  10, 9,  7],   # Producto 3
+    [20, 18, 25, 22, 30, 28, 26]   # Producto 4
+]
+# Array dias de la semana
+diasDeLaSemana = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+# Variable que almacenara las ventas totales por dia
+ventasTotalesPorDia = []
+# Variable que almacenara las ventas totales por producto
+ventasTotalesPorProducto = []
+# Variable que almacenara la mayor venta por dia y su posicion en el array
+mayorVentaPorDia = [0,0]
+# Variable que almacenara la mayor venta por producto y su posicion en el array
+mayorVentaPorProducto = [0,0]
+# Recorre ventas
+for i in range(len(ventas)):
+    acumulador = 0
+    for j in range(len(ventas[i])):
+        # Acumulo el valor de ventas
+        acumulador += ventas[i][j]
+    # Almacena el valor del total por producto
+    ventasTotalesPorProducto.append(acumulador)
+    # Reponde por pantalla el listado de productos y su total en ventas
+    print(f"Cantidad de ventas del producto {i + 1} es igual a: {acumulador}")
+# Recorre el array y devuelve el valor y posicion del elemento mas vendido
+for i in range(len(ventasTotalesPorProducto)):
+    if ventasTotalesPorProducto[i] > mayorVentaPorProducto[0]:
+        mayorVentaPorProducto[0] = ventasTotalesPorProducto[i]
+        mayorVentaPorProducto[1] = i
+# Recorre ventas por dia
+for i in range(len(ventas[0])):
+    acumulador = 0
+    for j in range(len(ventas)):
+        # Acumulo el valor de ventas
+        acumulador += ventas[j][i]
+    # Almacena el valor del total por dia
+    ventasTotalesPorDia.append(acumulador)
+# Recorre el array y devuelve el valor y posicion del dia con mas ventas
+for i in range(len(ventasTotalesPorDia)):
+    if ventasTotalesPorDia[i] > mayorVentaPorDia[0]:
+        mayorVentaPorDia[0] = ventasTotalesPorDia[i]
+        mayorVentaPorDia[1] = i
+# Devuelvo resultados por pantalla
+print(f"El dia de la semana con mayor ventas fue el dia: {diasDeLaSemana[mayorVentaPorDia[1]]} con un total de {mayorVentaPorDia[0]}")
+print(f"El producto {mayorVentaPorProducto[1] + 1} es el mas vendido con un total de {mayorVentaPorProducto[0]}")
+
+# -----------------------------------------------------------------------------------------------
