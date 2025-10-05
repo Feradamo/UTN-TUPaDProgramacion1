@@ -293,7 +293,7 @@ else:
 # Solicitar los números al usuario y mostrar el resultado usando esta
 # función.
 
-# Realiza la conversión
+# Realiza el calculo de promedio
 def calcular_promedio(a, b, c):
     return (a + b + c) / 3
 # Valida número ingresado.
@@ -302,7 +302,7 @@ def validar_dato(numero):
 # Solicita datos de entrada.
 def solicitar_dato(letra):
     return int(input(f"Ingrese número {letra}: "))
-# Variable que almacena celsius.
+# Variables que almacenan números.
 a = solicitar_dato("a")
 b = solicitar_dato("b")
 c = solicitar_dato("c")
