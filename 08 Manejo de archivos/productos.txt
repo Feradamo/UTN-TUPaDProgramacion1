@@ -1,4 +1,0 @@
-Teclado,120000.0,50
-Mouse,80000.0,75
-Auriculares,60000.0,100
-Parlante,20.0,10
