@@ -69,10 +69,12 @@ print(serie)
 # exponente, utilizando la fórmula 𝑛 M = 𝑛 ∗ 𝑛 (𝑚−1)
 # Prueba esta función en un algoritmo general.
 
+# Calcual potencia de un numero elevado a la base
 def factorial(base, exponente):
     if exponente == 0:
         return 1
     else:
+        # base por exponente
         return base * factorial(base, exponente - 1) 
 
 print(factorial(3, 4))
@@ -86,10 +88,12 @@ print(factorial(3, 4))
 # 4) Crear una función recursiva en Python que reciba un número entero positivo en base
 # decimal y devuelva su representación en binario como una cadena de texto.
 
+# Covierte decimal a binario
 def conversion_a_binario(numero):
     if numero < 2:
         return str(numero)
     else:
+        # operador de división entera + resto de la division
         return conversion_a_binario(numero // 2) + str(numero % 2)
     
 conversion_a_binario(10)
@@ -98,6 +102,7 @@ conversion_a_binario(10)
 # cadena de texto sin espacios ni tildes, y devuelva True si es un palíndromo o False si no
 # lo es.
 
+# Comprueba si la palabra recibida es un es un palindromo
 def es_palindromo(palabra):
     if len(palabra) <= 1:
         return True
@@ -108,15 +113,18 @@ def es_palindromo(palabra):
 
 # 6) Escribí una función recursiva en Python llamada suma_digitos(n) que reciba un
 # número entero positivo y devuelva la suma de todos sus dígitos.
+
+# Suma de todos los digitos
 def suma_digitos(n):
     if n == 0:
         return 0
     return (n % 10) + suma_digitos(n // 10)
 
-suma_digitos(10)
+print(suma_digitos(22))
 
-# 7) Escribí una función recursiva en Python llamada suma_digitos(n) que reciba un
-# número entero positivo y devuelva la suma de todos sus dígitos.
+# 7) Un niño está construyendo una pirámide con bloques. En el nivel más bajo coloca n
+# bloques, en el siguiente nivel uno menos (n - 1), y así sucesivamente hasta llegar al
+# último nivel con un solo bloque.
 def contar_bloques(n):
     if n <= 0:
         return 0
@@ -129,12 +137,13 @@ def contar_bloques(n):
 def contar_digito(numero, digito):
     if numero == 0:
         return 0
-
+    # Se obtiene unidad
     ultimo_digito = numero % 10
-
+    # Si es igual a digito devuelve 1
     if ultimo_digito == digito:
-        conteo_actual = 1
+        counter = 1
     else:
-        conteo_actual = 0
-    return conteo_actual + contar_digito(numero // 10, digito)
+    # De lo cotrario 0
+        counter = 0
+    return counter + contar_digito(numero // 10, digito)
 
